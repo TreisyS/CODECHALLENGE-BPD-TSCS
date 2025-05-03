@@ -8,7 +8,7 @@ const MS2_BASE_URL = config.BASE_URL_MS2;
 const SERVICE_SECRET_KEY = config.API_KEY_SECRET || '';
 
 export const getProfile = async (query: GetProfileQuery) => {
-  const response = await axios.get(`${MS2_BASE_URL}/api/v1/internal/profiles`, {
+  const response = await axios.get<{ data: IPerson[] }>(`${MS2_BASE_URL}/api/v1/internal/profiles`, {
     headers: {
       'mservice-key': SERVICE_SECRET_KEY,
     },
@@ -19,7 +19,7 @@ export const getProfile = async (query: GetProfileQuery) => {
 };
 
 export const getProfileById = async (id: string): Promise<IPerson> => {
-  const response = await axios.get(`${MS2_BASE_URL}/api/v1/internal/profiles/${id}`, {
+  const response = await axios.get<IPerson>(`${MS2_BASE_URL}/api/v1/internal/profiles/${id}`, {
     headers: {
       'mservice-key': SERVICE_SECRET_KEY,
     },
