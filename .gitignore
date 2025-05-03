@@ -1,0 +1,11 @@
+# Dependencias de Node
+node_modules/
+
+# Variables de entorno
+.env
+
+# Carpeta de salida de compilación
+dist/
+
+# Logs
+*.log
