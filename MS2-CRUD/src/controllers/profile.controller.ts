@@ -89,10 +89,11 @@ export const handleGetProfileById = async (
             res.status(200).json(profile);
             
         }
-        catch (error: any)
-        {
-            next(error.status ? error: new InternalError(error.message));
+        catch (error: any) {
+          next(error);
         }
+        
+        
     }
     
 

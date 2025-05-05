@@ -1,6 +1,8 @@
 import { NextFunction,  Response, Request } from 'express';
 import { AuthenticatedRequest } from '../types/express';
 import { config } from '../config';
+
+
 export function authenticatedTokenInternal
 (   req: AuthenticatedRequest,
     res: Response,

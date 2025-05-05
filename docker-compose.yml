@@ -1,0 +1,40 @@
+
+services:
+  mongo:
+    image: mongo:6.0
+    volumes:
+      - mongo-data:/data/db
+
+  ms2-crud:
+    image: treisys/ms2-crud:latest
+    env_file:
+      - MS2-CRUD/.env
+    depends_on:
+      - mongo
+    # interno únicamente
+    # ports:
+    #   - "3001:3001"
+
+  ms1-getprofile:
+    image: treisys/ms1-getprofile:latest
+    env_file:
+      - MS1-GETPROFILE/.env
+    depends_on:
+      - ms2-crud
+    # interno únicamente
+    # ports:
+    #   - "3000:3000"
+
+  proxy:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    ports:
+      - "443:443"
+    depends_on:
+      - ms1-getprofile
+      - ms2-crud
+
+volumes:
+  mongo-data:

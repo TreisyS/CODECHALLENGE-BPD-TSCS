@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: codechallenge-ingress
+  namespace: codechallenge
+spec:
+  ingressClassName: nginx     
+  tls:
+    - hosts:
+        - localhost
+      secretName: tls-secret
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - path: /api/v1/internal
+            pathType: Prefix
+            backend:
+              service:
+                name: ms1-getprofile
+                port:
+                  number: 3000
+          - path: /api/v1
+            pathType: Prefix
+            backend:
+              service:
+                name: ms2-crud
+                port:
+                  number: 3001

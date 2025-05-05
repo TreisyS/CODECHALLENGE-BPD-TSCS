@@ -60,9 +60,11 @@ export const handleGetProfileById = async (
             res.status(200).json(profile);
             
         }
-        catch (error: any)
-        {
-            next(error.status ? error: new InternalError(error.message));
-        }
+        catch (err: any) {
+            if (err.response?.status === 404) {
+              throw new NotFoundError('Perfil no encontrado');
+            }
+            throw new InternalError('Error consultando MS2');
+          }
     }
     

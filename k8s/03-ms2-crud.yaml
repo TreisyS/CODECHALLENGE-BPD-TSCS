@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms2-crud
+  namespace: codechallenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: ms2-crud }
+  template:
+    metadata:
+      labels: { app: ms2-crud }
+    spec:
+      containers:
+      - name: ms2-crud
+        image: treisys/ms2-crud:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+        envFrom:
+        - secretRef: { name: ms2-crud-env }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms2-crud
+  namespace: codechallenge
+spec:
+  ports:
+  - port: 3001
+    targetPort: 3001
+  selector: { app: ms2-crud }

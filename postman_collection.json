@@ -1,0 +1,477 @@
+{
+    "info": {
+      "name": "Code Challenge BPD",
+      "schema": "https://.postman.co/workspace/My-Workspace~cb23dfec-f421-4169-88a2-12546e497cf4/collection/29228834-411e4ff8-1253-49dd-bc30-8dca938c6e85?action=share&creator=29228834&active-environment=29228834-27a7917d-3015-49d5-9faa-bf322bad9215",
+      "description": "Colección de peticiones para los microservicios MS1 y MS2"
+    },
+    "item": [
+      {
+        "name": "MS1 – Listar todos los perfiles",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "mservice-key",
+              "value": "MSCOMMUNPASSSECRET!@"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/internal/profiles",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "internal",
+              "profiles"
+            ]
+          },
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "key": "value",
+                "value": "MSCOMMUNPASSSECRET!@"
+              },
+              {
+                "key": "key",
+                "value": "mservice-key"
+              },
+              {
+                "key": "in",
+                "value": "header"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS1 – Buscar perfiles con filtros",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "mservice-key",
+              "value": "MSCOMMUNPASSSECRET!@"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/get-profile?search=gar&estado=pendiente&sortBy=email&sortOrder=asc&page=1&limit=10",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "get-profile"
+            ],
+            "query": [
+              { "key": "search", "value": "gar" },
+              { "key": "estado", "value": "pendiente" },
+              { "key": "sortBy", "value": "email" },
+              { "key": "sortOrder", "value": "asc" },
+              { "key": "page", "value": "1" },
+              { "key": "limit", "value": "10" }
+            ]
+          },
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "key": "value",
+                "value": "MSCOMMUNPASSSECRET!@"
+              },
+              {
+                "key": "key",
+                "value": "mservice-key"
+              },
+              {
+                "key": "in",
+                "value": "header"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS1 – Obtener perfil por ID",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "mservice-key",
+              "value": "MSCOMMUNPASSSECRET!@"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/internal/profiles/68180192fe2ef05e9a740756",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "internal",
+              "profiles",
+              "68180192fe2ef05e9a740756"
+            ]
+          },
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "key": "value",
+                "value": "MSCOMMUNPASSSECRET!@"
+              },
+              {
+                "key": "key",
+                "value": "mservice-key"
+              },
+              {
+                "key": "in",
+                "value": "header"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Enviar código de verificación",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"treisychenoa@gmail.com\"\n}"
+          },
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/enviar-codigo-verificacion",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "enviar-codigo-verificacion"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Verificar código",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"treisychenoa@gmail.com\",\n    \"code\": \"307609\"\n}"
+          },
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/verificar-codigo",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "verificar-codigo"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Crear perfil",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"firstName\": \"Noe\",\n  \"lastName\": \"Sanchez\",\n  \"countryCode\": \"DO\",\n  \"cellphone\": \"8098371227\",\n  \"email\": \"treisydD67@hotmail.com\",\n  \"address\": \"San pedro de macoris\"\n}"
+          },
+          "url": {
+            "raw": "https://localhost/api/v1/profiles",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Actualizar perfil (PATCH)",
+        "request": {
+          "method": "PATCH",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"firstName\": \"Treisylvania\",\n  \"lastName\": \"Sanchez\",\n  \"cellphone\": \"8098371227\",\n  \"countryCode\": \"DO\",\n  \"email\": \"treisy.updated@example.com\",\n  \"address\": \"San pedro de macoris\"\n}"
+          },
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/68180192fe2ef05e9a740756",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "68180192fe2ef05e9a740756"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Borrar perfil (soft delete)",
+        "request": {
+          "method": "DELETE",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/681519693395c187857df90b",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "681519693395c187857df90b"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Borrar perfil permanentemente (hard delete)",
+        "request": {
+          "method": "DELETE",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/68151b353395c187857df912/hard",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "68151b353395c187857df912",
+              "hard"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Listar estados",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/estados",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "estados"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "MS2 – Reactivar perfil",
+        "request": {
+          "method": "PATCH",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "https://localhost/api/v1/profiles/reactivate-profile/681519693395c187857df90b",
+            "protocol": "https",
+            "host": [
+              "localhost"
+            ],
+            "path": [
+              "api",
+              "v1",
+              "profiles",
+              "reactivate-profile",
+              "681519693395c187857df90b"
+            ]
+          },
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "key": "username",
+                "value": "MS1POPULARUSER"
+              },
+              {
+                "key": "password",
+                "value": "MS1POPULARPASS!"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+  

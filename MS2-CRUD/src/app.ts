@@ -78,11 +78,13 @@ app.use((_req, res) => {
 
 //Error global
 
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {  
-    console.error('Error:', err.message); // Log the error message
-    res.status(500).json({ message: 'Error interno del servidor', detail: err.message });
-});
-
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {  
+    console.error('Error:', err.message);
+    const status = err.status && Number.isInteger(err.status) ? err.status : 500;
+    const message = status === 500 ? 'Error interno del servidor' : err.message;
+    res.status(status).json({ message });
+  });
+  
 
 if (NODE_ENV !== 'test') {
     mongoose
